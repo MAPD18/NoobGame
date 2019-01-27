@@ -22,7 +22,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     let scoreLabel = SKLabelNode(fontNamed: "AlbaSuper")
-    
+    var lives = 10
+    var livesComputed : Int {
+        get {
+            return lives
+        }
+        set {
+            self.lives = newValue
+            livesLabel.text = "Lives: \(newValue)"
+        }
+    }
+    let livesLabel = SKLabelNode(fontNamed: "AlbaSuper")
+    var levelNumber = 0
+    var levelDurationByLevel : Dictionary<Int, TimeInterval> = [
+        0 : 1.2,
+        1 : 1,
+        2 : 0.8,
+        3 : 0.6,
+        4 : 0.4
+    ]
     
     let player = SKSpriteNode(imageNamed: "playerShip")
     let bulletSound = SKAction.playSoundFileNamed("bulletSoundEffect.wav", waitForCompletion: false)
@@ -75,6 +93,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.zPosition = 100
         self.addChild(scoreLabel)
         
+        livesLabel.text = "Lives: 10"
+        livesLabel.fontSize = 70
+        livesLabel.fontColor = SKColor.white
+        livesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
+        livesLabel.position = CGPoint(x: self.size.width * 0.85, y: self.size.height*0.9)
+        livesLabel.zPosition = 100
+        self.addChild(livesLabel)
+        
         startNewLevel()
     }
     
@@ -109,6 +135,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addScore() {
         gameScoreComputed += 1
+        
+        if gameScore == 5 || gameScore == 10 || gameScore == 15 {
+            startNewLevel()
+        }
     }
     
     enum ContactCategory {
@@ -140,11 +170,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func startNewLevel() {
+        levelNumber += 1
+        
+        if self.action(forKey: "spawningEnemies") != nil {
+            self.removeAction(forKey: "spawningEnemies")
+        }
+        
+        let newLevelLabel = SKAction.run(showNewLevelLabel)
+        
         let spawn = SKAction.run(spawnEnemy)
-        let waitToSpawn = SKAction.wait(forDuration: 1)
-        let spawnSequence = SKAction.sequence([spawn, waitToSpawn])
+        let waitToSpawn = SKAction.wait(forDuration: levelDurationByLevel[levelNumber, default: 4])
+        let spawnSequence = SKAction.sequence([waitToSpawn, spawn])
         let spawnForever = SKAction.repeatForever(spawnSequence)
-        self.run(spawnForever)
+        
+        let mainSequence = SKAction.sequence([newLevelLabel, spawnForever])
+        self.run(mainSequence, withKey: "spawningEnemies")
+        
+        showNewLevelLabel()
+    }
+    
+    func showNewLevelLabel() {
+        let newLevelLabel = SKLabelNode(fontNamed: "AlbaSuper")
+        newLevelLabel.text = "Starting Level \(self.levelNumber)"
+        newLevelLabel.fontSize = 120
+        newLevelLabel.fontColor = SKColor.white
+        newLevelLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.center
+        newLevelLabel.position = CGPoint(x: self.size.width * 0.5, y: self.size.height*0.5)
+        newLevelLabel.zPosition = 100
+        newLevelLabel.setScale(0)
+        self.addChild(newLevelLabel)
+        
+        let fadeIn = SKAction.scale(to: 1, duration: 0.5)
+        let fadeOut = SKAction.fadeOut(withDuration: 0.5)
+        let removeLabel = SKAction.removeFromParent()
+        let newLevelSequence = SKAction.sequence([fadeIn, fadeOut, removeLabel])
+        newLevelLabel.run(newLevelSequence)
     }
     
     func fireBullet() {

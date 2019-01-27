@@ -11,6 +11,18 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var gameScore = 0
+    var gameScoreComputed : Int {
+        get {
+            return gameScore
+        }
+        set {
+            self.gameScore = newValue
+            scoreLabel.text = "Score: \(newValue)"
+        }
+    }
+    let scoreLabel = SKLabelNode(fontNamed: "AlbaSuper")
+    
     
     let player = SKSpriteNode(imageNamed: "playerShip")
     let bulletSound = SKAction.playSoundFileNamed("bulletSoundEffect.wav", waitForCompletion: false)
@@ -55,6 +67,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.contactTestBitMask = PhysicsCategories.Enemy
         self.addChild(player)
         
+        scoreLabel.text = "Score: 0"
+        scoreLabel.fontSize = 70
+        scoreLabel.fontColor = SKColor.white
+        scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
+        scoreLabel.position = CGPoint(x: self.size.width * 0.15, y: self.size.height*0.9)
+        scoreLabel.zPosition = 100
+        self.addChild(scoreLabel)
+        
         startNewLevel()
     }
     
@@ -79,11 +99,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             bulletBody.node?.removeFromParent()
             enemyBody.node?.removeFromParent()
+            
+            addScore()
             break
         default:
             break
         }
-        
+    }
+    
+    func addScore() {
+        gameScoreComputed += 1
     }
     
     enum ContactCategory {

@@ -15,9 +15,10 @@
 		F60153A721FE158E001CC96B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F60153A521FE158E001CC96B /* Main.storyboard */; };
 		F60153A921FE1591001CC96B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F60153A821FE1591001CC96B /* Assets.xcassets */; };
 		F60153AC21FE1591001CC96B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F60153AA21FE1591001CC96B /* LaunchScreen.storyboard */; };
-		F60153B721FE3D1C001CC96B /* bulletSoundEffect.wav in Resources */ = {isa = PBXBuildFile; fileRef = F60153B521FE3D1B001CC96B /* bulletSoundEffect.wav */; };
 		F60153B821FE3D1C001CC96B /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F60153B621FE3D1B001CC96B /* explosion.mp3 */; };
 		F60153BA21FE3DE4001CC96B /* shortExplosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = F60153B921FE3DE4001CC96B /* shortExplosion.wav */; };
+		F60153C121FE624C001CC96B /* bulletSoundEffect.wav in Resources */ = {isa = PBXBuildFile; fileRef = F60153BE21FE5F21001CC96B /* bulletSoundEffect.wav */; };
+		F60153C321FE6354001CC96B /* Albas.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F60153C221FE6354001CC96B /* Albas.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +32,10 @@
 		F60153A821FE1591001CC96B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F60153AB21FE1591001CC96B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F60153AD21FE1591001CC96B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F60153B521FE3D1B001CC96B /* bulletSoundEffect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bulletSoundEffect.wav; path = ../../../../../../Downloads/bulletSoundEffect.wav; sourceTree = "<group>"; };
 		F60153B621FE3D1B001CC96B /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
 		F60153B921FE3DE4001CC96B /* shortExplosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shortExplosion.wav; sourceTree = "<group>"; };
+		F60153BE21FE5F21001CC96B /* bulletSoundEffect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bulletSoundEffect.wav; sourceTree = "<group>"; };
+		F60153C221FE6354001CC96B /* Albas.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Albas.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +68,11 @@
 		F601539A21FE158E001CC96B /* NoobGame */ = {
 			isa = PBXGroup;
 			children = (
+				F60153BC21FE5F08001CC96B /* Resources */,
 				F601539B21FE158E001CC96B /* AppDelegate.swift */,
 				F601539D21FE158E001CC96B /* GameScene.sks */,
 				F601539F21FE158E001CC96B /* Actions.sks */,
 				F60153A121FE158E001CC96B /* GameScene.swift */,
-				F60153B521FE3D1B001CC96B /* bulletSoundEffect.wav */,
-				F60153B921FE3DE4001CC96B /* shortExplosion.wav */,
-				F60153B621FE3D1B001CC96B /* explosion.mp3 */,
 				F60153A321FE158E001CC96B /* GameViewController.swift */,
 				F60153A521FE158E001CC96B /* Main.storyboard */,
 				F60153A821FE1591001CC96B /* Assets.xcassets */,
@@ -80,6 +80,17 @@
 				F60153AD21FE1591001CC96B /* Info.plist */,
 			);
 			path = NoobGame;
+			sourceTree = "<group>";
+		};
+		F60153BC21FE5F08001CC96B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F60153C221FE6354001CC96B /* Albas.ttf */,
+				F60153B921FE3DE4001CC96B /* shortExplosion.wav */,
+				F60153BE21FE5F21001CC96B /* bulletSoundEffect.wav */,
+				F60153B621FE3D1B001CC96B /* explosion.mp3 */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,10 +151,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F60153C321FE6354001CC96B /* Albas.ttf in Resources */,
 				F60153A721FE158E001CC96B /* Main.storyboard in Resources */,
+				F60153C121FE624C001CC96B /* bulletSoundEffect.wav in Resources */,
 				F601539E21FE158E001CC96B /* GameScene.sks in Resources */,
 				F60153A921FE1591001CC96B /* Assets.xcassets in Resources */,
-				F60153B721FE3D1C001CC96B /* bulletSoundEffect.wav in Resources */,
 				F60153B821FE3D1C001CC96B /* explosion.mp3 in Resources */,
 				F60153AC21FE1591001CC96B /* LaunchScreen.storyboard in Resources */,
 				F60153A021FE158E001CC96B /* Actions.sks in Resources */,
